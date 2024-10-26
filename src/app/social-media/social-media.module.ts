@@ -7,6 +7,7 @@ import { PostListComponent } from './components/post-list/post-list.component';
 import { provideRouter, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { PostListItemComponent } from './components/post-list-item/post-list-item.component';
+import { CommentsComponent } from '../shared/components/comments/comments.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { PostListItemComponent } from './components/post-list-item/post-list-ite
     HttpClientModule,
     SocialMediaRoutingModule,
     PostListComponent,
-    PostListItemComponent
+    PostListItemComponent,
+    CommentsComponent
     
   ],
   exports:[],

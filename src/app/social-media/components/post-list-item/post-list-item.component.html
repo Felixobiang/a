@@ -11,5 +11,8 @@
       <img mat-card-image *ngIf="post.imageUrl as imageUrl" [src]="imageUrl" [alt]="post.title">
       <p><span class="post-content">{{ post.content }}</span></p>
     </mat-card-content>
+    <mat-card-actions> 
+      <app-comments [comments]="post.comments"></app-comments>
+    </mat-card-actions>
   </mat-card>
 
