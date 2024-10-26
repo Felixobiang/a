@@ -17,7 +17,8 @@ import { SocialMediaModule } from "./social-media/social-media.module";
         AppRoutingModule,
         BrowserModule,
         CoreModule,
-        SharedModule
+        SharedModule,
+        
         
       ],
       exports:[],
