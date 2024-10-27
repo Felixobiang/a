@@ -7,6 +7,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 @Injectable()
 export class PostsService {
+    addNewComment(postCommented: { comment: string; postId: number; }) {
+      console.log(postCommented);
+    }
     route!: Routes;
     constructor(private http: HttpClient) {}
 

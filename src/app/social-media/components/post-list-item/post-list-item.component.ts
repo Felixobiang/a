@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Post } from '../../models/post.model';
 import { TitleCasePipe,DatePipe ,NgIf} from '@angular/common';
 import { SharedModule } from '../../../shared/shared.module';
@@ -21,12 +21,15 @@ export class PostListItemComponent implements OnInit {
 
 
   @Input() post!: Post;
+  @Output() postCommented = new EventEmitter<{ comment: string, postId: number }>();
+
 
 ngOnInit(): void {
   
 }
 onNewComment(comment: string) {
 
-  console.log(comment)
+  this.postCommented.emit({ comment, postId: this.post.id });
 }
 }
+
