@@ -18,8 +18,15 @@ import { CommentsComponent } from '../../../shared/components/comments/comments.
 })
 export class PostListItemComponent implements OnInit {
 
+
+
   @Input() post!: Post;
+
 ngOnInit(): void {
   
+}
+onNewComment(comment: string) {
+
+  console.log(comment)
 }
 }

@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatList, MatListItem, MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { getMatFormFieldPlaceholderConflictError, matFormFieldAnimations, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
@@ -28,7 +28,8 @@ import { MatInputModule } from '@angular/material/input';
     MatListItem,
     NgIf,
     NgFor,
-    DatePipe
+    DatePipe,
+
   ],
   
 })

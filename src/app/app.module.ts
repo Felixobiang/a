@@ -6,6 +6,7 @@ import { CommonModule } from "@angular/common";
 import { AppRoutingModule } from "./app-routing.module";
 import { SharedModule } from "./shared/shared.module";
 import { SocialMediaModule } from "./social-media/social-media.module";
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 @NgModule({
 
@@ -22,7 +23,7 @@ import { SocialMediaModule } from "./social-media/social-media.module";
         
       ],
       exports:[],
-      providers: [],
+      providers: [provideAnimations()],
       bootstrap: [AppComponent],
       
 

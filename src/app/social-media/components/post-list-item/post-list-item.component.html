@@ -1,3 +1,4 @@
+<div class="post-content">
 <mat-card>
     <mat-card-header>
       <mat-card-title>
@@ -12,7 +13,7 @@
       <p><span class="post-content">{{ post.content }}</span></p>
     </mat-card-content>
     <mat-card-actions> 
-      <app-comments [comments]="post.comments"></app-comments>
+      <app-comments [comments]="post.comments"(newComment)="onNewComment($event)"></app-comments>
     </mat-card-actions>
   </mat-card>
-
+</div>

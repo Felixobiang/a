@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { CommentsComponent } from './components/comments/comments.component';
 import { MaterialModule } from './material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -12,14 +13,16 @@ import { MaterialModule } from './material.module';
   imports: [
     CommonModule,
     CommentsComponent,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   
   ],
   exports: [
     MatToolbarModule,
     MatCardModule,
     CommentsComponent,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
     
   ]
 })
