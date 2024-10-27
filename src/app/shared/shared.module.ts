@@ -5,16 +5,19 @@ import { MatCardModule } from '@angular/material/card';
 import { CommentsComponent } from './components/comments/comments.component';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ShortenPipe } from './pipes/shorten.pipe';
+import { UsernamePipe } from './pipes/username.pipe';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ShortenPipe,UsernamePipe],
   imports: [
     CommonModule,
     CommentsComponent,
     MaterialModule,
     ReactiveFormsModule
+    
   
   ],
   exports: [
@@ -22,7 +25,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     CommentsComponent,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ShortenPipe,
+    UsernamePipe
     
   ]
 })
