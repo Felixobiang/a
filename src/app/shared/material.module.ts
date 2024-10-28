@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { NgIf,NgFor,DatePipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatList, MatListItem, MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
@@ -26,6 +28,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule,
     MatList,
     MatListItem,
+    MatCheckboxModule,
+    MatRadioModule,
     NgIf,
     NgFor,
     DatePipe,
