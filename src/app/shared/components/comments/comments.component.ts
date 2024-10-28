@@ -3,7 +3,9 @@ import { Comment } from '../../../core/models/comment.model';
 import { MaterialModule } from '../../material.module';
 import { SharedModule } from '../../shared.module';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { animate, animateChild, group, query, sequence, stagger, state, style, transition, trigger, useAnimation } from '@angular/animations';
+import { flashAnimation } from '../../animations/flash.animation';
+import { slideAndFadeAnimation } from '../../animations/slideAndFadeAnimation.animation';
 
 @Component({
   selector: 'app-comments',
@@ -12,6 +14,15 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   standalone: true,
   imports: [MaterialModule,SharedModule],
   animations: [
+    trigger('list', [
+      transition(':enter', [
+          query('@listItem', [
+              stagger(50, [
+                  animateChild()
+              ])
+          ])
+      ])
+  ]),
     trigger('listItem', [
       state('default', style({
         transform: 'scale(1)',
@@ -31,16 +42,36 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
       ]),
 
       transition('void => *', [
-        style({
-            transform: 'translateX(-100%)',
-            opacity: 0,
-            'background-color': 'rgb(201, 157, 242)',
-        }),
-        animate('250ms ease-out', style({
-            transform: 'translateX(0)',
-            opacity: 1,
-            'background-color': 'white',
-        }))
+        query('.comment-text, .comment-date', [
+          style({
+              opacity: 0
+          }),
+      ]),
+  
+      useAnimation(slideAndFadeAnimation, {
+        params: {
+            time: '700ms',
+            startColor: 'rgb(201, 157, 242)'
+        }
+    }),
+       // group([
+        useAnimation(flashAnimation, {
+          params: {
+              time: '250ms',
+              flashColor: 'rgb(249,179,111)'
+          }
+      }),
+        //]),
+        query('.comment-text', [
+          animate('350ms', style({
+              opacity: 1
+          }))
+      ]),
+      query('.comment-date', [
+          animate('700ms', style({
+              opacity: 1
+          }))
+      ]),
     ])
     ])
   ]
