@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgIf,NgFor,DatePipe } from '@angular/common';
+import { NgIf,NgFor,DatePipe,AsyncPipe } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
