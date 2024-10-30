@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MaterialModule } from '../../../shared/material.module';
 import { SharedModule } from '../../../shared/shared.module';
 import { map, Observable, startWith, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { ComplexFormService } from '../../services/complex-form.service';
 
 @Component({
   selector: 'app-complex-form',
@@ -27,8 +28,9 @@ export class ComplexFormComponent implements OnInit {
   loginInfoForm!: FormGroup;
   showEmailCtrl$!: Observable<boolean>;
   showPhoneCtrl$!: Observable<boolean>;
+  loading = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private complexFormService : ComplexFormService) { }
 
   ngOnInit(): void {
     this.initFormControls();
@@ -80,9 +82,24 @@ private setPhoneValidators(showPhoneCtrl: boolean) {
     }
     this.phoneCtrl.updateValueAndValidity();
 }
-  onSubmitForm() {
-    console.log(this.mainForm.value);
-    }
+onSubmitForm() {
+    this.loading = true;
+    this.complexFormService.saveUserInfo(this.mainForm.value).pipe(
+        tap(saved => {
+            this.loading = false;
+            if (saved) {
+            this.resetForm();
+            } else {
+            console.error('Echec de l\'enregistrement');
+            }
+        })
+    ).subscribe();
+}
+
+private resetForm() {
+    this.mainForm.reset();
+    this.contactPreferenceCtrl.patchValue('email');
+}
   private initMainForm(): void {
     this.mainForm = this.formBuilder.group({
 
@@ -114,5 +131,21 @@ this.loginInfoForm = this.formBuilder.group({
     confirmPassword: this.confirmPasswordCtrl
 });
 }
+
+getFormControlErrorText(ctrl: AbstractControl) {
+    if (ctrl.hasError('required')) {
+        return 'Ce champ est requis';
+    } else if (ctrl.hasError('email')) {
+        return 'Merci d\'entrer une adresse mail valide';
+    } else if (ctrl.hasError('minlength')) {
+        return 'Ce numéro de téléphone ne contient pas assez de chiffres';
+    } else if (ctrl.hasError('maxlength')) {
+        return 'Ce numéro de téléphone contient trop de chiffres';
+    } else {
+        return 'Ce champ contient une erreur';
+    }
+}
+
+
 
 }
