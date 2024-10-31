@@ -1,6 +1,6 @@
 .comments-row {
   display: flex;
-  border-top: thin solid #555;
+  border-top: thin solid #a3a3a3;
   padding-top: 10px;
   justify-content: space-around;
   align-items: center;
@@ -11,9 +11,16 @@ mat-form-field {
 }
   mat-list-item {
     width: 90%;
-    border-bottom: thin solid #555;
+    border-bottom: thin solid #a3a3a3;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
   }
   span {
-    padding-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     
+  }
+  h2 {
+    margin-left: 15px;
   }
