@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { combineLatest, map, Observable, startWith } from 'rxjs';
 import { CandidatesService } from '../../services/candidates.service';
 import { Candidate } from '../../models/candidate.model';
 import { SharedModule } from '../../../shared/shared.module';
@@ -30,10 +30,30 @@ export class CandidateListComponent implements OnInit{
     this.initObservables();
     this.candidatesService.getCandidatesFromServer();
   }
+ 
 //init method that load spinner and get all candidate store in observable
   private initObservables() {
     this.loading$ = this.candidatesService.loading$;
-    this.candidates$ = this.candidatesService.candidates$;
+         // init obersable de recherche
+         const search$ = this.searchCtrl.valueChanges.pipe(
+          startWith(this.searchCtrl.value),
+          map(value => value.toLowerCase())
+      );
+        const searchType$: Observable<CandidateSearchType> = this.searchTypeCtrl.valueChanges.pipe(
+          startWith(this.searchTypeCtrl.value)
+      );
+    this.candidates$ =  combineLatest([
+      search$,
+      searchType$,
+      this.candidatesService.candidates$
+      ]
+  ).pipe(
+      map(([search, searchType, candidates]) => candidates.filter(candidate => candidate[searchType]
+          .toLowerCase()
+          .includes(search as string))
+      )
+  );
+
 }
 //init form use to research
 private initForm() {
