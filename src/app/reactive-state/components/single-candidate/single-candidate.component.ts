@@ -3,7 +3,7 @@ import { Observable, switchMap } from 'rxjs';
 import { Candidate } from '../../models/candidate.model';
 import { CandidatesService } from '../../services/candidates.service';
 import { SharedModule } from '../../../shared/shared.module';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-candidate',
@@ -19,7 +19,7 @@ export class SingleCandidateComponent implements OnInit {
   loading$!: Observable<boolean>;
 candidate$!: Observable<Candidate>;
 
-constructor(private candidatesService: CandidatesService, private route: ActivatedRoute) { }
+constructor(private candidatesService: CandidatesService, private route: ActivatedRoute,private router: Router) { }
 
 ngOnInit(): void {
     this.initObservables();
@@ -32,7 +32,7 @@ private initObservables() {
   );
 }
 onGoBack() {
-
+this.router.navigateByUrl('/reactive-state/candidates')
   }
   onRefuse() {
  

@@ -7,12 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatList, MatListItem, MatListModule, MatNavList } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { getMatFormFieldPlaceholderConflictError, matFormFieldAnimations, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
-import { switchMap } from 'rxjs';
 
 @NgModule({
   
@@ -20,6 +19,7 @@ import { switchMap } from 'rxjs';
         MatList,
          MatListItem,
          MatNavList,
+         MatSelectModule,
          NgIf,
          NgFor,
          DatePipe,
@@ -33,6 +33,7 @@ import { switchMap } from 'rxjs';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     AsyncPipe,
     RouterLink,
     MatNavList,
