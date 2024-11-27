@@ -10,7 +10,7 @@ import { PostsService } from '../../services/posts.service';
 @Component({
   selector: 'app-post-list',
   standalone:true,
-  imports:[PostListItemComponent,NgFor,AsyncPipe,TitleCasePipe],
+  imports:[PostListItemComponent,NgFor,AsyncPipe],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.scss'
 })
