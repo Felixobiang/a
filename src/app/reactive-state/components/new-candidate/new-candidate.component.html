@@ -1,1 +1,54 @@
-<p>new-candidate works!</p>
+<mat-card [formGroup]="candidateForm" class="main-form">
+    <mat-card-title>Inscription</mat-card-title>
+
+    <mat-card-subtitle>Informations du candidat</mat-card-subtitle>
+    <div class="form-row">
+        <mat-form-field appearance="fill">
+            <mat-label>Prénom</mat-label>
+            <input type="text" matInput formControlName="firstName">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Nom</mat-label>
+            <input type="text" matInput formControlName="lastName">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="form-row">
+        <mat-form-field appearance="fill">
+            <mat-label>Adress email</mat-label>
+            <input type="text" matInput formControlName="email">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>   
+    </div>
+    <mat-card-subtitle>Informations professionelles</mat-card-subtitle>
+    <mat-form-field appearance="fill">
+        <mat-label>Job</mat-label>
+        <input type="text" matInput formControlName="job">
+        <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+    <div class="form-row">
+        <mat-form-field appearance="fill">
+            <mat-label>Departement</mat-label>
+            <input type="text" matInput formControlName="department">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Societe</mat-label>
+            <input type="text" matInput formControlName="company">
+            <mat-error>Ce champ est requis</mat-error>
+        </mat-form-field>
+        
+    </div>
+    <mat-form-field appearance="fill">
+        <mat-label>photo du candidat</mat-label>
+        <input type="text" matInput formControlName="imageUrl">
+        <mat-error>Ce champ est requis</mat-error>
+    </mat-form-field>
+
+<mat-card-actions *ngIf="candidateForm.valid">
+    <button mat-flat-button color="primary" 
+    (click)="onSubmitForm()" 
+    [disabled]="loading" >ENREGISTRER</button>
+</mat-card-actions>
+<mat-spinner *ngIf="loading" color="primary" mode="indeterminate"></mat-spinner>

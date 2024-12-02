@@ -75,4 +75,20 @@ hireCandidate(id: number): void {
       )
   ).subscribe();
 }
+
+addCandidate(formValue: Candidate): void {
+       this.candidates$.pipe(
+       take(1),
+       map(candidates => [...candidates].sort((a,b) => a.id - b.id)),
+       map(sortedCandidates => sortedCandidates[sortedCandidates.length - 1]),
+       map(previousCandidate => ({
+          ...formValue,
+          id: previousCandidate.id + 1
+      })),
+      switchMap(newCandidate => this.http.post<Candidate>(
+          `${environment.apiUrl}/candidates`,
+          newCandidate)
+      )
+  ).subscribe();;
+}
 }

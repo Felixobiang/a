@@ -1,9 +1,10 @@
 <mat-card>
     <mat-card-title-group>
       <mat-card-title>
-        Candidats
+        Candidats <span><a routerLink="/reactive-state/candidates/create"><mat-icon matSuffix>add</mat-icon></a></span>
       </mat-card-title>
       <div class="form">
+  
         <mat-form-field appearance="fill">
             <input matInput type="text" [formControl]="searchCtrl">
             <mat-icon matSuffix>search</mat-icon>
